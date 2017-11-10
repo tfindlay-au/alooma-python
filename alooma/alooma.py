@@ -1129,6 +1129,20 @@ class Client(object):
 
         self.__send_request(requests.delete, url)
 
+    def set_s3_retention(self, input_post_data):
+        """
+        :param input_post_data: is a JSON string with the following options:
+            "gzip":True,
+            "serverSideEncryption":True,
+            "saveMetadata":True,
+            "awsAccessKeyId":"<ACCESS_KEY>",
+            "awsSecretAccessKey":"<ACCESS_SECRET>",
+            "awsBucketName":"<MY_BUCKET_NAME>"
+        :return:
+        """
+        url = self.rest_url + 'settings/s3-retention'
+        self.__send_request(requests.post, url, json=input_post_data)
+
     def get_users(self):
         url = self.rest_url + 'users/'
 
